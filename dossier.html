@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1c3d5a" />
+  <title>Dossier client — Horizon Group</title>
+  <meta name="description" content="Ouvrez votre dossier client Horizon Group." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">HG</span><span>Horizon Group</span></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a data-nav href="index.html">Présentation</a>
+        <a data-nav href="services.html">Services</a>
+        <a data-nav href="contact.html">Contact</a>
+        <a data-nav href="dossier.html">Dossier client</a>
+      </nav>
+      <button class="menu-btn" type="button" data-menu-toggle aria-label="Menu">☰</button>
+    </div>
+    <nav class="mobile-nav" data-mobile-nav>
+      <a data-nav href="index.html">Présentation</a>
+      <a data-nav href="services.html">Services</a>
+      <a data-nav href="contact.html">Contact</a>
+      <a data-nav href="dossier.html">Dossier client</a>
+    </nav>
+  </header>
+  <main class="section wrap">
+    <div class="panel" style="max-width:40rem;margin-bottom:1.5rem">
+      <p class="page-kicker">Dossier client · Public</p>
+      <h1 style="margin:0;font-size:clamp(1.75rem,4vw,2.5rem)">Ouvrir un dossier</h1>
+      <p class="muted">Formulaire accessible à tous. Ces infos créent votre fiche pour le suivi.</p>
+    </div>
+    <div class="grid-2">
+      <form id="dossier-form" class="panel" novalidate data-submit-endpoint="https://formsubmit.co/ajax/contact@horizongroup.ca">
+        <h2 style="margin:0 0 1rem;font-size:1.25rem;font-family:var(--font-sans)">Vos informations</h2>
+        <div class="form-group">
+          <label for="businessName">Nom de l’entreprise *</label>
+          <input class="field" id="businessName" name="businessName" type="text" required placeholder="Ex. : Chalets du Cap" />
+          <p class="error" data-error-for="businessName"></p>
+        </div>
+        <div class="form-group">
+          <label for="location">Lieu *</label>
+          <input class="field" id="location" name="location" type="text" required placeholder="Baie-Saint-Paul ou adresse" />
+          <p class="error" data-error-for="location"></p>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Téléphone *</label>
+            <input class="field" id="phone" name="phone" type="tel" required placeholder="(418) 555-0123" />
+            <p class="error" data-error-for="phone"></p>
+          </div>
+          <div class="form-group">
+            <label for="email">Courriel</label>
+            <input class="field" id="email" name="email" type="email" placeholder="vous@exemple.com" />
+            <p class="error" data-error-for="email"></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bestReachTime">Meilleure heure pour vous rejoindre *</label>
+          <input class="field" id="bestReachTime" name="bestReachTime" type="text" required placeholder="Ex. : en semaine, 9 h–11 h" />
+          <p class="error" data-error-for="bestReachTime"></p>
+        </div>
+        <div class="form-group">
+          <label for="callAvailability">Disponibilités — points d’appel *</label>
+          <textarea class="field" id="callAvailability" name="callAvailability" rows="3" required placeholder="Ex. : lundi et mercredi PM"></textarea>
+          <p class="error" data-error-for="callAvailability"></p>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:1.25rem 0" />
+        <h2 style="margin:0 0 1rem;font-size:1.1rem;font-family:var(--font-sans)">Devis / service</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="placeType">Type de lieu *</label>
+            <select class="field" id="placeType" name="placeType" required>
+              <option value="">Choisir…</option>
+              <option value="chalet">Chalet locatif</option>
+              <option value="commerce">Commerce</option>
+              <option value="bureau">Bureau</option>
+              <option value="autre">Autre</option>
+            </select>
+            <p class="error" data-error-for="placeType"></p>
+          </div>
+          <div class="form-group">
+            <label for="sizeLabel">Taille *</label>
+            <select class="field" id="sizeLabel" name="sizeLabel" required>
+              <option value="">Choisir…</option>
+              <option value="petit">Petit</option>
+              <option value="moyen">Moyen</option>
+              <option value="grand">Grand</option>
+            </select>
+            <p class="error" data-error-for="sizeLabel"></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <span style="display:block;margin-bottom:0.35rem;font-size:0.875rem;font-weight:500">Type(s) de service *</span>
+          <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Ménage complet" /> Ménage complet</label>
+          <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Entre deux locations" /> Entre deux locations</label>
+          <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Après événement" /> Après événement</label>
+          <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Entretien régulier" /> Entretien régulier</label>
+          <p class="error" data-error-for="serviceTypes"></p>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="desiredDate">Date souhaitée *</label>
+            <input class="field" id="desiredDate" name="desiredDate" type="date" required />
+            <p class="error" data-error-for="desiredDate"></p>
+          </div>
+          <div class="form-group">
+            <label for="urgency">Urgence *</label>
+            <select class="field" id="urgency" name="urgency" required>
+              <option value="">Choisir…</option>
+              <option value="standard">Standard</option>
+              <option value="prioritaire">Prioritaire (48 h)</option>
+              <option value="urgent">Urgent</option>
+            </select>
+            <p class="error" data-error-for="urgency"></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="accessNotes">Notes / accès</label>
+          <textarea class="field" id="accessNotes" name="accessNotes" rows="2" placeholder="Code porte, animaux…"></textarea>
+        </div>
+        <p id="form-server-error" class="alert" hidden role="alert"></p>
+        <button class="btn btn-block" type="submit">Enregistrer mon dossier</button>
+      </form>
+      <div id="form-success" class="panel" hidden role="status">
+        <h3>Dossier enregistré</h3>
+        <p class="muted">Merci. La fiche de <strong id="success-name"></strong> a été créée. Nous vous contacterons au <strong id="success-phone"></strong>, de préférence <span id="success-time"></span>.</p>
+        <button type="button" class="btn btn-outline" data-reset-form>Soumettre une autre fiche</button>
+      </div>
+      <aside class="panel">
+        <h2 style="margin:0 0 0.75rem;font-size:1rem;font-family:var(--font-sans)">Ce que nous recueillons</h2>
+        <ul class="muted" style="margin:0;padding-left:1.1rem;line-height:1.7;font-size:0.9rem">
+          <li>Entreprise & lieu</li>
+          <li>Téléphone & horaires d’appel</li>
+          <li>Type de lieu, taille, services, date, urgence</li>
+        </ul>
+        <p class="subtle" style="margin-top:1rem"><a href="dossiers.html">Espace équipe</a></p>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div><strong>Horizon Group</strong><div>Baie-Saint-Paul, Québec</div></div>
+      <div><a href="contact.html">Contact</a></div>
+    </div>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
