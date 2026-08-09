@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#1c3d5a" />
   <title>Services — Horizon Group</title>
-  <meta name="description" content="Services de ménage professionnel Horizon Group à Baie-Saint-Paul." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="site-bg" aria-hidden="true"></div>
   <header class="header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">HG</span>
-        <span>Horizon Group</span>
-      </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">HG</span><span>Horizon Group</span></a>
+      <nav class="nav">
         <a data-nav href="index.html">Présentation</a>
-        <a data-nav href="services.html">Services</a>
+        <a data-nav href="services.html" aria-current="page">Services</a>
+        <a data-nav href="realisations.html">Réalisations</a>
         <a data-nav href="contact.html">Contact</a>
         <a data-nav href="dossier.html">Dossier client</a>
       </nav>
-      <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Menu">☰</button>
+      <button class="menu-btn" type="button" data-menu-toggle aria-label="Menu">☰</button>
     </div>
-    <nav class="mobile-nav" data-mobile-nav aria-label="Navigation mobile">
+    <nav class="mobile-nav" data-mobile-nav>
       <a data-nav href="index.html">Présentation</a>
-      <a data-nav href="services.html">Services</a>
+      <a data-nav href="services.html" aria-current="page">Services</a>
+      <a data-nav href="realisations.html">Réalisations</a>
       <a data-nav href="contact.html">Contact</a>
       <a data-nav href="dossier.html">Dossier client</a>
     </nav>
@@ -35,27 +33,22 @@
     <div class="panel" style="max-width:40rem">
       <p class="page-kicker">Services</p>
       <h1 style="margin:0;font-size:clamp(1.75rem,4vw,2.5rem)">Ce que nous faisons</h1>
-      <p class="muted" style="margin-top:0.75rem">Des protocoles clairs pour les chalets locatifs, commerces et bureaux de Charlevoix.</p>
+      <p class="muted">Protocoles clairs pour chalets, commerces et bureaux de Charlevoix.</p>
     </div>
     <div class="grid-3" style="margin-top:1.5rem">
-      <article class="value-card"><h3>Ménage complet</h3><p>Nettoyage en profondeur : sols, surfaces, salles de bain, cuisine, dépoussiérage et finition.</p></article>
+      <article class="value-card"><h3>Ménage complet</h3><p>Sols, surfaces, salles de bain, cuisine, dépoussiérage et finition.</p></article>
       <article class="value-card"><h3>Entre deux locations</h3><p>Rotation rapide pour chalets et logements touristiques.</p></article>
-      <article class="value-card"><h3>Après événement</h3><p>Remise en état après réceptions, tournages ou occupations intensives.</p></article>
-      <article class="value-card"><h3>Entretien régulier</h3><p>Fréquence hebdomadaire ou mensuelle pour commerces et bureaux.</p></article>
-      <article class="value-card"><h3>Commerces</h3><p>Espaces clients, arrière-boutique — discrétion et horaires adaptés.</p></article>
+      <article class="value-card"><h3>Après événement</h3><p>Remise en état après réceptions ou occupations intensives.</p></article>
+      <article class="value-card"><h3>Entretien régulier</h3><p>Fréquence hebdomadaire ou mensuelle.</p></article>
+      <article class="value-card"><h3>Commerces</h3><p>Espaces clients et arrière-boutique — discrétion et horaires adaptés.</p></article>
       <article class="value-card"><h3>Sur devis</h3><p>Ouvrez un dossier : on vous rappelle selon vos disponibilités.</p></article>
     </div>
     <div class="panel" style="margin-top:2rem;text-align:center">
-      <p class="muted">Décrivez votre besoin en 2 minutes.</p>
       <a class="btn" href="dossier.html">Remplir un dossier client</a>
+      <p class="muted" style="margin-top:1rem"><a href="realisations.html">Voir les réalisations</a></p>
     </div>
   </main>
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div><strong>Horizon Group</strong><div>Baie-Saint-Paul, Québec</div></div>
-      <div><a href="dossier.html">Dossier client</a> · <a href="contact.html">Contact</a></div>
-    </div>
-  </footer>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div><div><a href="realisations.html">Réalisations</a> · <a href="dossier.html">Dossier client</a></div></div></footer>
   <script src="js/app.js"></script>
 </body>
 </html>
