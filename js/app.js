@@ -31,7 +31,7 @@ function saveDossiers(list) {
 
 function validateForm(data) {
   const errors = {};
-  if (!data.businessName || data.businessName.trim().length < 2) errors.businessName = "Indiquez le nom de l’entreprise.";
+  if (!data.businessName || data.businessName.trim().length < 2) errors.businessName = "Indiquez le nom de l'entreprise.";
   if (!data.location || data.location.trim().length < 2) errors.location = "Indiquez le lieu.";
   if (!data.phone || data.phone.trim().length < 7) errors.phone = "Indiquez un téléphone valide.";
   if (!data.bestReachTime || data.bestReachTime.trim().length < 2) errors.bestReachTime = "Indiquez la meilleure heure.";
@@ -40,7 +40,7 @@ function validateForm(data) {
   if (!data.sizeLabel) errors.sizeLabel = "Indiquez la taille.";
   if (!data.serviceTypes || data.serviceTypes.length === 0) errors.serviceTypes = "Choisissez au moins un service.";
   if (!data.desiredDate) errors.desiredDate = "Indiquez une date.";
-  if (!data.urgency) errors.urgency = "Choisissez l’urgence.";
+  if (!data.urgency) errors.urgency = "Choisissez l'urgence.";
   return errors;
 }
 
@@ -84,7 +84,7 @@ function initDossierForm() {
 
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    btn.textContent = "Enregistrement…";
+    btn.textContent = "Enregistrement\u2026";
     try {
       const list = loadDossiers();
       list.unshift(data);
@@ -95,7 +95,7 @@ function initDossierForm() {
         Object.entries(data).forEach(([k, v]) => {
           payload.append(k, Array.isArray(v) ? v.join(", ") : String(v ?? ""));
         });
-        payload.append("_subject", "Nouveau dossier client — " + data.businessName);
+        payload.append("_subject", "Nouveau dossier client \u2014 " + data.businessName);
         payload.append("_template", "table");
         payload.append("_captcha", "false");
         try {
@@ -112,7 +112,7 @@ function initDossierForm() {
     } catch (err) {
       if (serverError) {
         serverError.hidden = false;
-        serverError.textContent = "L’enregistrement a échoué. Réessayez.";
+        serverError.textContent = "L'enregistrement a \u00e9chou\u00e9. R\u00e9essayez.";
       }
     } finally {
       btn.disabled = false;
@@ -135,7 +135,11 @@ function formatDate(iso) {
 }
 
 function escapeHtml(s) {
-  return String(s).replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function initAdminDossiers() {
@@ -170,7 +174,7 @@ function initAdminDossiers() {
   function renderList() {
     const items = loadDossiers();
     if (!items.length) {
-      listEl.innerHTML = '<div class="panel"><p class="muted">Aucun dossier pour l’instant.</p><p><a class="btn" href="dossier.html">Ouvrir le formulaire</a></p></div>';
+      listEl.innerHTML = '<div class="panel"><p class="muted">Aucun dossier pour l\'instant.</p><p><a class="btn" href="dossier.html">Ouvrir le formulaire</a></p></div>';
       return;
     }
     listEl.innerHTML = items.map((c) => `
@@ -180,9 +184,9 @@ function initAdminDossiers() {
         <p class="subtle">${formatDate(c.createdAt)}</p>
         <dl class="meta-grid">
           <div class="meta-item"><dt>Lieu</dt><dd>${escapeHtml(c.location)}</dd></div>
-          <div class="meta-item"><dt>Téléphone</dt><dd><a href="tel:${escapeHtml(String(c.phone).replace(/[^\d+]/g,""))}">${escapeHtml(c.phone)}</a></dd></div>
+          <div class="meta-item"><dt>T\u00e9l\u00e9phone</dt><dd><a href="tel:${escapeHtml(String(c.phone).replace(/[^\d+]/g,""))}">${escapeHtml(c.phone)}</a></dd></div>
           <div class="meta-item"><dt>Meilleure heure</dt><dd>${escapeHtml(c.bestReachTime)}</dd></div>
-          <div class="meta-item"><dt>Disponibilités</dt><dd>${escapeHtml(c.callAvailability)}</dd></div>
+          <div class="meta-item"><dt>Disponibilit\u00e9s</dt><dd>${escapeHtml(c.callAvailability)}</dd></div>
         </dl>
       </article>`).join("");
   }
