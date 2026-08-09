@@ -326,3 +326,54 @@ textarea.field { min-height: 6.5rem; resize: vertical; }
   letter-spacing: 0.16em;
   color: var(--muted);
 }
+
+/* Galerie réalisations — 8 emplacements photo */
+.gallery-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 520px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+}
+.gallery-slot {
+  margin: 0;
+  border: 1px solid rgb(228 226 218 / 0.7);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.gallery-frame {
+  position: relative;
+  aspect-ratio: 1;
+  background: linear-gradient(145deg, #efeee9, #e4e2da);
+  display: grid;
+  place-items: center;
+}
+.gallery-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-placeholder {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--subtle);
+  border: 1px dashed rgb(107 106 99 / 0.45);
+  border-radius: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgb(255 255 255 / 0.55);
+}
+.gallery-caption {
+  padding: 0.65rem 0.85rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+}
