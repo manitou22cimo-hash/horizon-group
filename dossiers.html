@@ -16,6 +16,7 @@
       <nav class="nav">
         <a data-nav href="index.html">Présentation</a>
         <a data-nav href="services.html">Services</a>
+        <a data-nav href="realisations.html">Réalisations</a>
         <a data-nav href="contact.html">Contact</a>
         <a data-nav href="dossier.html">Dossier client</a>
       </nav>
@@ -24,6 +25,7 @@
     <nav class="mobile-nav" data-mobile-nav>
       <a data-nav href="index.html">Présentation</a>
       <a data-nav href="services.html">Services</a>
+      <a data-nav href="realisations.html">Réalisations</a>
       <a data-nav href="contact.html">Contact</a>
       <a data-nav href="dossier.html">Dossier client</a>
     </nav>
@@ -32,13 +34,13 @@
     <div class="panel" style="max-width:40rem">
       <p class="page-kicker">Interne · Fiches</p>
       <h1 style="margin:0;font-size:clamp(1.75rem,4vw,2.5rem)">Dossiers clients</h1>
-      <p class="muted">Les clients remplissent le formulaire public. Code équipe pour les fiches locales.</p>
+      <p class="muted">Code équipe pour voir les fiches locales. En production, les dossiers arrivent aussi par courriel.</p>
     </div>
     <div id="admin-gate" class="panel" style="max-width:24rem;margin-top:1.5rem">
       <form id="admin-login">
         <div class="form-group">
           <label for="pin">Code</label>
-          <input class="field" id="pin" name="pin" type="password" inputmode="numeric" placeholder="••••" />
+          <input class="field" id="pin" name="pin" type="password" inputmode="numeric" />
           <p class="help">Code par défaut : 2026</p>
           <p id="pin-error" class="error" hidden></p>
         </div>
@@ -48,12 +50,12 @@
     <div id="dossier-list" hidden>
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0 0.5rem">
         <button type="button" class="btn btn-outline" id="export-json">Exporter JSON</button>
-        <button type="button" class="btn btn-outline" id="clear-local">Vider le stockage local</button>
+        <button type="button" class="btn btn-outline" id="clear-local">Vider le stockage</button>
         <a class="btn" href="dossier.html">Nouveau dossier</a>
       </div>
     </div>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div><div><a href="realisations.html">Réalisations</a></div></div></footer>
   <script src="js/app.js"></script>
 </body>
 </html>
