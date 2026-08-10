@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1c3d5a" />
-  <title>Fiches clients — Horizon Group</title>
   <meta name="robots" content="noindex" />
+  <title>Fiches clients — Horizon Group</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -31,31 +30,23 @@
     </nav>
   </header>
   <main class="section wrap">
-    <div class="panel" style="max-width:40rem">
-      <p class="page-kicker">Interne · Fiches</p>
-      <h1 style="margin:0;font-size:clamp(1.75rem,4vw,2.5rem)">Dossiers clients</h1>
-      <p class="muted">Code équipe pour voir les fiches locales. En production, les dossiers arrivent aussi par courriel.</p>
-    </div>
+    <div class="panel"><p class="page-kicker">Interne</p><h1 style="margin:0;font-size:clamp(1.85rem,4vw,2.5rem)">Dossiers clients</h1></div>
     <div id="admin-gate" class="panel" style="max-width:24rem;margin-top:1.5rem">
       <form id="admin-login">
-        <div class="form-group">
-          <label for="pin">Code</label>
-          <input class="field" id="pin" name="pin" type="password" inputmode="numeric" />
-          <p class="help">Code par défaut : 2026</p>
-          <p id="pin-error" class="error" hidden></p>
-        </div>
+        <div class="form-group"><label for="pin">Code</label><input class="field" id="pin" name="pin" type="password" /><p class="help">Code : 2026</p><p id="pin-error" class="error" hidden></p></div>
         <button class="btn" type="submit">Voir les fiches</button>
       </form>
     </div>
     <div id="dossier-list" hidden>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0 0.5rem">
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0">
         <button type="button" class="btn btn-outline" id="export-json">Exporter JSON</button>
-        <button type="button" class="btn btn-outline" id="clear-local">Vider le stockage</button>
-        <a class="btn" href="dossier.html">Nouveau dossier</a>
+        <button type="button" class="btn btn-outline" id="clear-local">Vider</button>
+        <a class="btn" href="dossier.html">Nouveau</a>
       </div>
     </div>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div><div><a href="realisations.html">Réalisations</a></div></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div></div></footer>
+  <script src="js/agents.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

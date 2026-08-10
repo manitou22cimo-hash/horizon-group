@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1c3d5a" />
   <title>Dossier client — Horizon Group</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -32,10 +31,9 @@
   <main class="section wrap">
     <div class="panel" style="max-width:40rem;margin-bottom:1.5rem">
       <p class="page-kicker">Dossier client · Public</p>
-      <h1 style="margin:0;font-size:clamp(1.75rem,4vw,2.5rem)">Ouvrir un dossier</h1>
-      <p class="muted">Formulaire accessible à tous.</p>
+      <h1 style="margin:0;font-size:clamp(1.85rem,4vw,2.5rem)">Ouvrir un dossier</h1>
     </div>
-    <form id="dossier-form" class="panel" novalidate data-submit-endpoint="https://formsubmit.co/ajax/contact@horizongroup.ca" style="max-width:40rem">
+    <form id="dossier-form" class="panel" novalidate data-submit-email="contact@horizongroup.ca" style="max-width:40rem">
       <div class="form-group"><label for="businessName">Nom de l’entreprise *</label><input class="field" id="businessName" name="businessName" type="text" required /><p class="error" data-error-for="businessName"></p></div>
       <div class="form-group"><label for="location">Lieu *</label><input class="field" id="location" name="location" type="text" required /><p class="error" data-error-for="location"></p></div>
       <div class="form-row">
@@ -49,17 +47,17 @@
         <div class="form-group"><label for="sizeLabel">Taille *</label><select class="field" id="sizeLabel" name="sizeLabel" required><option value="">Choisir…</option><option value="petit">Petit</option><option value="moyen">Moyen</option><option value="grand">Grand</option></select><p class="error" data-error-for="sizeLabel"></p></div>
       </div>
       <div class="form-group">
-        <span style="display:block;margin-bottom:0.35rem;font-size:0.875rem;font-weight:500">Services *</span>
+        <span style="display:block;margin-bottom:0.35rem;font-weight:600">Services *</span>
         <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Ménage complet" /> Ménage complet</label>
         <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Entre deux locations" /> Entre deux locations</label>
         <label style="display:flex;gap:0.5rem;font-weight:400"><input type="checkbox" name="serviceTypes" value="Entretien régulier" /> Entretien régulier</label>
         <p class="error" data-error-for="serviceTypes"></p>
       </div>
       <div class="form-row">
-        <div class="form-group"><label for="desiredDate">Date souhaitée *</label><input class="field" id="desiredDate" name="desiredDate" type="date" required /><p class="error" data-error-for="desiredDate"></p></div>
+        <div class="form-group"><label for="desiredDate">Date *</label><input class="field" id="desiredDate" name="desiredDate" type="date" required /><p class="error" data-error-for="desiredDate"></p></div>
         <div class="form-group"><label for="urgency">Urgence *</label><select class="field" id="urgency" name="urgency" required><option value="">Choisir…</option><option value="standard">Standard</option><option value="prioritaire">Prioritaire</option><option value="urgent">Urgent</option></select><p class="error" data-error-for="urgency"></p></div>
       </div>
-      <div class="form-group"><label for="accessNotes">Notes / accès</label><textarea class="field" id="accessNotes" name="accessNotes" rows="2"></textarea></div>
+      <div class="form-group"><label for="accessNotes">Notes</label><textarea class="field" id="accessNotes" name="accessNotes" rows="2"></textarea></div>
       <p id="form-server-error" class="alert" hidden></p>
       <button class="btn btn-block" type="submit">Enregistrer mon dossier</button>
     </form>
@@ -69,7 +67,8 @@
       <button type="button" class="btn btn-outline" data-reset-form>Autre fiche</button>
     </div>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div><div><a href="realisations.html">Réalisations</a> · <a href="dossiers.html">Espace équipe</a></div></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div></div></footer>
+  <script src="js/agents.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
