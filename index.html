@@ -3,29 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1c3d5a" />
+  <meta name="theme-color" content="#14324c" />
   <title>Horizon Group — Présentation</title>
-  <meta name="description" content="Horizon Group — ménage professionnel pour chalets locatifs et commerces à Baie-Saint-Paul, Charlevoix." />
+  <meta name="description" content="Horizon Group — ménage professionnel, Baie-Saint-Paul." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="site-bg" aria-hidden="true"></div>
   <header class="header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true">HG</span>
-        <span>Horizon Group</span>
-      </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">HG</span><span>Horizon Group</span></a>
+      <nav class="nav">
         <a data-nav href="index.html" aria-current="page">Présentation</a>
         <a data-nav href="services.html">Services</a>
         <a data-nav href="realisations.html">Réalisations</a>
         <a data-nav href="contact.html">Contact</a>
         <a data-nav href="dossier.html">Dossier client</a>
       </nav>
-      <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-label="Menu">☰</button>
+      <button class="menu-btn" type="button" data-menu-toggle aria-label="Menu">☰</button>
     </div>
-    <nav class="mobile-nav" data-mobile-nav aria-label="Navigation mobile">
+    <nav class="mobile-nav" data-mobile-nav>
       <a data-nav href="index.html" aria-current="page">Présentation</a>
       <a data-nav href="services.html">Services</a>
       <a data-nav href="realisations.html">Réalisations</a>
@@ -37,44 +34,31 @@
     <section class="hero wrap">
       <h1 class="brand-title">Horizon Group</h1>
       <p class="brand-tagline">Ménage professionnel pour chalets locatifs et commerces.</p>
-      <div class="ad-wrap">
-        <div class="ad-square">
-          <video id="ad-video" src="assets/pub-menage-avant-apres.mp4" autoplay muted loop playsinline preload="auto" title="Avant / Après ménage"></video>
-          <span class="ad-badge">Avant → Après · Son coupé</span>
-        </div>
-      </div>
+      <div class="ad-wrap"><div class="ad-square">
+        <video id="ad-video" src="assets/pub-menage-avant-apres.mp4" autoplay muted loop playsinline preload="auto"></video>
+        <span class="ad-badge">Avant → Après</span>
+      </div></div>
     </section>
     <section class="section wrap">
       <div class="grid-2">
         <div class="panel">
           <h2>Qui nous sommes</h2>
-          <p class="muted">Entreprise de Baie-Saint-Paul (2026). Ménage professionnel pour chalets, commerces et bureaux — équipe locale, discrète et rigoureuse.</p>
+          <p class="muted">Baie-Saint-Paul, fondée en 2026. Ménage pour chalets, commerces et bureaux.</p>
           <p style="margin-top:1.25rem"><a class="btn" href="services.html">Voir nos services →</a></p>
         </div>
         <aside style="display:grid;gap:0.75rem">
           <div class="fact"><div class="fact-label">Siège</div><p>Baie-Saint-Paul, Québec</p></div>
           <div class="fact"><div class="fact-label">Fondée en</div><p>2026</p></div>
-          <div class="fact"><div class="fact-label">Approche</div><p>Équipe locale et discrète</p></div>
+          <div class="fact"><div class="fact-label">Approche</div><p>Équipe locale</p></div>
         </aside>
       </div>
-      <div class="grid-3">
-        <article class="value-card"><h3>Avant / après</h3><p>Des lieux en désordre redeviennent propres et prêts à accueillir.</p></article>
-        <article class="value-card"><h3>Chalets &amp; commerces</h3><p>Rotation locative, entre-saisons et commerces de détail.</p></article>
-        <article class="value-card"><h3>Fiabilité</h3><p>Ponctualité et finition soignée.</p></article>
-      </div>
       <div class="panel" style="margin-top:2rem;text-align:center">
-        <p style="margin:0 0 0.5rem;font-weight:600">Besoin d’un ménage professionnel ?</p>
-        <p class="muted" style="margin:0 0 1rem"><a href="realisations.html">Voir nos réalisations</a> ou ouvrez un dossier.</p>
         <a class="btn" href="dossier.html">Ouvrir un dossier client</a>
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div><strong>Horizon Group</strong><div>Baie-Saint-Paul, Québec</div></div>
-      <div><a href="realisations.html">Réalisations</a> · <a href="contact.html">Contact</a> · <a href="dossier.html">Dossier client</a></div>
-    </div>
-  </footer>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div><div><a href="realisations.html">Réalisations</a> · <a href="dossier.html">Dossier</a></div></div></footer>
+  <script src="js/agents.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

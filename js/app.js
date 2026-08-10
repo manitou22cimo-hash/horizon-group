@@ -85,29 +85,30 @@ function initDossierForm() {
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = "Enregistrement\u2026";
+
     try {
-      const list = loadDossiers();
-      list.unshift(data);
-      saveDossiers(list);
-      const endpoint = form.dataset.submitEndpoint;
-      if (endpoint && !endpoint.includes("REMPLACER")) {
-        const payload = new FormData();
-        Object.entries(data).forEach(([k, v]) => {
-          payload.append(k, Array.isArray(v) ? v.join(", ") : String(v ?? ""));
-        });
-        payload.append("_subject", "Nouveau dossier client \u2014 " + data.businessName);
-        payload.append("_template", "table");
-        payload.append("_captcha", "false");
-        try {
-          await fetch(endpoint, { method: "POST", body: payload, headers: { Accept: "application/json" } });
-        } catch (_) {}
+      try {
+        if (!(window.HorizonAgents && HorizonAgents.AgentSuivi)) {
+          const list = loadDossiers();
+          list.unshift(data);
+          saveDossiers(list);
+        }
+      } catch (_) {}
+
+      if (window.HorizonAgents && HorizonAgents.AgentSuivi) {
+        HorizonAgents.AgentSuivi.save(data);
+      }
+      const email = (form.dataset.submitEmail || "contact@horizongroup.ca").trim();
+      if (window.HorizonAgents && HorizonAgents.AgentFormulaire) {
+        HorizonAgents.AgentFormulaire.sendCorsSafe(form, data, email);
+        return;
       }
       form.hidden = true;
       if (success) {
         success.hidden = false;
-        const n = qs("#success-name", success); if (n) n.textContent = data.businessName;
-        const p = qs("#success-phone", success); if (p) p.textContent = data.phone;
-        const t = qs("#success-time", success); if (t) t.textContent = data.bestReachTime;
+        const sn = qs("#success-name", success); if (sn) sn.textContent = data.businessName;
+        const sp = qs("#success-phone", success); if (sp) sp.textContent = data.phone;
+        const st = qs("#success-time", success); if (st) st.textContent = data.bestReachTime;
       }
     } catch (err) {
       if (serverError) {
@@ -162,6 +163,10 @@ function initAdminDossiers() {
     }
   });
   qs("#export-json")?.addEventListener("click", () => {
+    if (window.HorizonAgents && HorizonAgents.AgentSuivi) {
+      HorizonAgents.AgentSuivi.exportJson();
+      return;
+    }
     const blob = new Blob([JSON.stringify(loadDossiers(), null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -169,10 +174,16 @@ function initAdminDossiers() {
     a.click();
   });
   qs("#clear-local")?.addEventListener("click", () => {
-    if (confirm("Effacer les dossiers locaux ?")) { saveDossiers([]); renderList(); }
+    if (confirm("Effacer les dossiers locaux ?")) {
+      if (window.HorizonAgents && HorizonAgents.AgentSuivi) HorizonAgents.AgentSuivi.clear();
+      else saveDossiers([]);
+      renderList();
+    }
   });
   function renderList() {
-    const items = loadDossiers();
+    const items = (window.HorizonAgents && HorizonAgents.AgentSuivi)
+      ? HorizonAgents.AgentSuivi.list()
+      : loadDossiers();
     if (!items.length) {
       listEl.innerHTML = '<div class="panel"><p class="muted">Aucun dossier pour l\'instant.</p><p><a class="btn" href="dossier.html">Ouvrir le formulaire</a></p></div>';
       return;
