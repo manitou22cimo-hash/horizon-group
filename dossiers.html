@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>Fiches clients — Horizon Group</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -33,7 +34,7 @@
     <div class="panel"><p class="page-kicker">Interne</p><h1 style="margin:0;font-size:clamp(1.85rem,4vw,2.5rem)">Dossiers clients</h1></div>
     <div id="admin-gate" class="panel" style="max-width:24rem;margin-top:1.5rem">
       <form id="admin-login">
-        <div class="form-group"><label for="pin">Code</label><input class="field" id="pin" name="pin" type="password" /><p class="help">Code : 2026</p><p id="pin-error" class="error" hidden></p></div>
+        <div class="form-group"><label for="pin">Code</label><input class="field" id="pin" name="pin" type="password" /><p id="pin-error" class="error" hidden></p></div>
         <button class="btn" type="submit">Voir les fiches</button>
       </form>
     </div>
@@ -43,6 +44,7 @@
         <button type="button" class="btn btn-outline" id="clear-local">Vider</button>
         <a class="btn" href="dossier.html">Nouveau</a>
       </div>
+      <div id="dossier-cards"></div>
     </div>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><div><strong>Horizon Group</strong></div></div></footer>
