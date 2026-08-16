@@ -1,21 +1,23 @@
 # Horizon Group
 
-Site web statique — ménage professionnel, Baie-Saint-Paul (fondée 2026).
+Site public — ménage professionnel, Baie-Saint-Paul (fondée 2026).
 
-## Pages
-- index.html — Présentation + carré vidéo publicitaire
-- services.html
-- realisations.html
-- contact.html
-- dossier.html — Formulaire public client (FormSubmit)
-- dossiers.html — Consultation interne (code 2026)
+## Activer l’hébergement (GitHub Pages)
 
-## Activer GitHub Pages
-Settings → Pages → Source: branch **main** / folder **/ (root)** → Save
+Le dépôt est **public**. Pages n’est pas encore activé (c’est ça le 404).
 
-URL: https://manitou22cimo-hash.github.io/horizon-group/
+1. Ouvre https://github.com/manitou22cimo-hash/horizon-group/settings/pages
+2. **Source** : Deploy from a branch
+3. **Branch** : `main` / folder `/ (root)`
+4. Save
 
-## Alternatives d'hébergement
-1. **Netlify Drop** — glisser-déposer le dossier (recommandé)
-2. **Cloudflare Pages**
-3. **GitHub Pages** (après activation)
+URL : https://manitou22cimo-hash.github.io/horizon-group/
+
+## Courriel des dossiers
+
+FormSubmit → elbeaudry@outlook.com  
+Premier envoi : cliquer le lien de confirmation dans Outlook (et les indésirables).
+
+## Alternative permanente (30 secondes)
+
+https://app.netlify.com/drop — glisser le dossier du site.
