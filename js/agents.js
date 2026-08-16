@@ -44,7 +44,7 @@
   HG.AgentFormulaire = {
     name: "Formulaire",
     sendCorsSafe(form, data, email) {
-      const to = (email || "contact@horizongroup.ca").replace(/^ajax\//, "");
+      const to = (email || "elbeaudry@outlook.com").replace(/^ajax\//, "");
       const action = `https://formsubmit.co/${to}`;
       const bridge = document.createElement("form");
       bridge.method = "POST";

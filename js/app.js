@@ -98,7 +98,7 @@ function initDossierForm() {
       if (window.HorizonAgents && HorizonAgents.AgentSuivi) {
         HorizonAgents.AgentSuivi.save(data);
       }
-      const email = (form.dataset.submitEmail || "contact@horizongroup.ca").trim();
+      const email = (form.dataset.submitEmail || "elbeaudry@outlook.com").trim();
       if (window.HorizonAgents && HorizonAgents.AgentFormulaire) {
         HorizonAgents.AgentFormulaire.sendCorsSafe(form, data, email);
         return;
