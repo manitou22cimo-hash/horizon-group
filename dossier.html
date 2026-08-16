@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#14324c" />
   <title>Dossier client — Horizon Group</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -35,12 +36,16 @@
       <h1 style="margin:0;font-size:clamp(1.85rem,4vw,2.5rem)">Ouvrir un dossier</h1>
       <p class="muted">Remplissez le formulaire. Les infos partent directement à Horizon Group par courriel.</p>
     </div>
-    <form id="dossier-form" class="panel" novalidate data-submit-email="elbeaudry128@gmail.com" style="max-width:40rem">
+    <form id="dossier-form" class="panel" method="POST" action="https://formsubmit.co/elbeaudry128@gmail.com" novalidate data-submit-email="elbeaudry128@gmail.com" style="max-width:40rem">
+      <input type="hidden" name="_subject" value="Nouveau dossier client — Horizon Group" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://horizon-group-88t.pages.dev/dossier?envoye=1" />
       <div class="form-group"><label for="businessName">Nom de l’entreprise *</label><input class="field" id="businessName" name="businessName" type="text" required /><p class="error" data-error-for="businessName"></p></div>
       <div class="form-group"><label for="location">Lieu *</label><input class="field" id="location" name="location" type="text" required /><p class="error" data-error-for="location"></p></div>
       <div class="form-row">
         <div class="form-group"><label for="phone">Téléphone *</label><input class="field" id="phone" name="phone" type="tel" required /><p class="error" data-error-for="phone"></p></div>
-        <div class="form-group"><label for="email">Courriel</label><input class="field" id="email" name="email" type="email" /></div>
+        <div class="form-group"><label for="email">Courriel</label><input class="field" id="email" name="email" type="email" /><p class="error" data-error-for="email"></p></div>
       </div>
       <div class="form-group"><label for="bestReachTime">Meilleure heure *</label><input class="field" id="bestReachTime" name="bestReachTime" type="text" required /><p class="error" data-error-for="bestReachTime"></p></div>
       <div class="form-group"><label for="callAvailability">Disponibilités *</label><textarea class="field" id="callAvailability" name="callAvailability" rows="3" required></textarea><p class="error" data-error-for="callAvailability"></p></div>
