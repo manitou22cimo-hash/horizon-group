@@ -2,22 +2,11 @@
 
 Site public — ménage professionnel, Baie-Saint-Paul (fondée 2026).
 
-## Activer l’hébergement (GitHub Pages)
+## Courriel des dossiers clients
+FormSubmit → **elbeaudry128@gmail.com**
 
-Le dépôt est **public**. Pages n’est pas encore activé (c’est ça le 404).
+Premier envoi : cliquer le lien **Activate Form** dans Gmail (regarder aussi Spam).
 
-1. Ouvre https://github.com/manitou22cimo-hash/horizon-group/settings/pages
-2. **Source** : Deploy from a branch
-3. **Branch** : `main` / folder `/ (root)`
-4. Save
-
+## Activer GitHub Pages
+Settings → Pages → branch **main** / folder **/ (root)** → Save
 URL : https://manitou22cimo-hash.github.io/horizon-group/
-
-## Courriel des dossiers
-
-FormSubmit → elbeaudry@outlook.com  
-Premier envoi : cliquer le lien de confirmation dans Outlook (et les indésirables).
-
-## Alternative permanente (30 secondes)
-
-https://app.netlify.com/drop — glisser le dossier du site.

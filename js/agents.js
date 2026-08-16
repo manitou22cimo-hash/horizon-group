@@ -18,7 +18,6 @@
     } catch (_) {}
   }
 
-  /* ─── 1. Agent Accueil ─── */
   HG.AgentAccueil = {
     name: "Accueil",
     run() {
@@ -57,17 +56,10 @@
     },
   };
 
-  /* ─── 2. Agent Formulaire (CORS-safe) ─── */
   HG.AgentFormulaire = {
     name: "Formulaire",
-    /**
-     * Envoi permanent sans CORS :
-     * - Formulaire HTML natif vers formsubmit.co (pas de fetch cross-origin)
-     * - _next ramène sur la page avec ?envoye=1
-     * - Sauvegarde locale en parallèle
-     */
     sendCorsSafe(form, data, email) {
-      const to = (email || "elbeaudry@outlook.com").replace(/^ajax\//, "");
+      const to = (email || "elbeaudry128@gmail.com").replace(/^ajax\//, "");
       const action = `https://formsubmit.co/${to}`;
 
       const bridge = document.createElement("form");
@@ -116,7 +108,6 @@
     },
   };
 
-  /* ─── 3. Agent Suivi ─── */
   HG.AgentSuivi = {
     name: "Suivi",
     KEY: "horizon_group_dossiers_v1",
@@ -149,7 +140,6 @@
     },
   };
 
-  /* ─── 4. Agent Fiabilité ─── */
   HG.AgentFiabilite = {
     name: "Fiabilite",
     issues: [],
@@ -159,12 +149,7 @@
       log(this.name, "contrôle terminé", this.issues);
     },
     checkCriticalAssets() {
-      const paths = [
-        "css/styles.css",
-        "js/app.js",
-        "js/agents.js",
-      ];
-      paths.forEach((path) => {
+      ["css/styles.css", "js/app.js", "js/agents.js"].forEach((path) => {
         fetch(path, { method: "HEAD", cache: "no-cache" })
           .then((r) => {
             if (!r.ok) {
@@ -176,18 +161,13 @@
             this.issues.push({ path, status: "network" });
           });
       });
-      // Médias optionnels
-      ["assets/bg-foret-quebec.jpg", "assets/pub-menage-avant-apres.mp4"].forEach(
-        (path) => {
-          fetch(path, { method: "HEAD", cache: "no-cache" })
-            .then((r) => {
-              if (r.status === 404) {
-                log(this.name, "média manquant (404) — non bloquant", path);
-              }
-            })
-            .catch(() => {});
-        }
-      );
+      ["assets/bg-foret-quebec.jpg", "assets/pub-menage-avant-apres.mp4"].forEach((path) => {
+        fetch(path, { method: "HEAD", cache: "no-cache" })
+          .then((r) => {
+            if (r.status === 404) log(this.name, "média manquant (404) — non bloquant", path);
+          })
+          .catch(() => {});
+      });
     },
     watchOnline() {
       window.addEventListener("offline", () => {
@@ -199,7 +179,6 @@
     },
   };
 
-  /** Démarre les 4 agents */
   HG.boot = function boot() {
     HG.AgentAccueil.run();
     HG.AgentFormulaire.showSuccessFromQuery();
