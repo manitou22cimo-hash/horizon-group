@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#14324c" />
   <title>Dossier client — Horizon Group</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -32,8 +33,9 @@
     <div class="panel" style="max-width:40rem;margin-bottom:1.5rem">
       <p class="page-kicker">Dossier client · Public</p>
       <h1 style="margin:0;font-size:clamp(1.85rem,4vw,2.5rem)">Ouvrir un dossier</h1>
+      <p class="muted">Remplissez le formulaire. Les infos partent directement à Horizon Group par courriel.</p>
     </div>
-    <form id="dossier-form" class="panel" novalidate data-submit-email="contact@horizongroup.ca" style="max-width:40rem">
+    <form id="dossier-form" class="panel" novalidate data-submit-email="elbeaudry@outlook.com" style="max-width:40rem">
       <div class="form-group"><label for="businessName">Nom de l’entreprise *</label><input class="field" id="businessName" name="businessName" type="text" required /><p class="error" data-error-for="businessName"></p></div>
       <div class="form-group"><label for="location">Lieu *</label><input class="field" id="location" name="location" type="text" required /><p class="error" data-error-for="location"></p></div>
       <div class="form-row">
@@ -54,10 +56,10 @@
         <p class="error" data-error-for="serviceTypes"></p>
       </div>
       <div class="form-row">
-        <div class="form-group"><label for="desiredDate">Date *</label><input class="field" id="desiredDate" name="desiredDate" type="date" required /><p class="error" data-error-for="desiredDate"></p></div>
+        <div class="form-group"><label for="desiredDate">Date souhaitée *</label><input class="field" id="desiredDate" name="desiredDate" type="date" required /><p class="error" data-error-for="desiredDate"></p></div>
         <div class="form-group"><label for="urgency">Urgence *</label><select class="field" id="urgency" name="urgency" required><option value="">Choisir…</option><option value="standard">Standard</option><option value="prioritaire">Prioritaire</option><option value="urgent">Urgent</option></select><p class="error" data-error-for="urgency"></p></div>
       </div>
-      <div class="form-group"><label for="accessNotes">Notes</label><textarea class="field" id="accessNotes" name="accessNotes" rows="2"></textarea></div>
+      <div class="form-group"><label for="accessNotes">Notes / accès</label><textarea class="field" id="accessNotes" name="accessNotes" rows="2"></textarea></div>
       <p id="form-server-error" class="alert" hidden></p>
       <button class="btn btn-block" type="submit">Enregistrer mon dossier</button>
     </form>
