@@ -1,7 +1,7 @@
 /* Horizon Group — navigation + dossiers clients (public) */
 
 const STORAGE_KEY = "horizon_group_dossiers_v1";
-const ADMIN_PIN = "2026"; // PIN simple pour consulter les fiches sur cet appareil / navigateur
+const ADMIN_PIN = "2026";
 
 function qs(sel, root = document) {
   return root.querySelector(sel);
@@ -10,7 +10,6 @@ function qsa(sel, root = document) {
   return [...root.querySelectorAll(sel)];
 }
 
-/* Mobile menu */
 function initNav() {
   const btn = qs("[data-menu-toggle]");
   const panel = qs("[data-mobile-nav]");
@@ -19,7 +18,6 @@ function initNav() {
     const open = panel.classList.toggle("open");
     btn.setAttribute("aria-expanded", open ? "true" : "false");
   });
-  // Mark current page
   const path = location.pathname.split("/").pop() || "index.html";
   qsa("a[data-nav]").forEach((a) => {
     const href = a.getAttribute("href");
@@ -29,7 +27,6 @@ function initNav() {
   });
 }
 
-/* Storage helpers — dossiers visibles pour l'équipe via page admin */
 function loadDossiers() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
@@ -59,7 +56,7 @@ function validateForm(data) {
     errors.serviceTypes = "Choisissez au moins un type de service.";
   if (!data.desiredDate) errors.desiredDate = "Indiquez une date souhaitée.";
   if (!data.urgency) errors.urgency = "Choisissez le niveau d’urgence.";
-  if (data.email && data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim()))
+  if (data.email && data.email.trim() && !/[^\s@]+@[^\s@]+\.[^\s@]+/.test(data.email.trim()))
     errors.email = "Courriel invalide.";
   return errors;
 }
@@ -80,7 +77,7 @@ function initDossierForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    serverError.hidden = true;
+    if (serverError) serverError.hidden = true;
 
     const fd = new FormData(form);
     const serviceTypes = fd.getAll("serviceTypes");
@@ -111,7 +108,6 @@ function initDossierForm() {
     btn.textContent = "Enregistrement…";
 
     try {
-      // 1) Sauvegarde locale via Agent Suivi (ou fallback)
       try {
         if (!(window.HorizonAgents && HorizonAgents.AgentSuivi)) {
           const list = loadDossiers();
@@ -120,20 +116,17 @@ function initDossierForm() {
         }
       } catch (_) {}
 
-      // 2) Envoi public — SANS CORS (formulaire natif FormSubmit)
-      //    Évite fetch cross-origin; _next ramène sur ?envoye=1
       if (window.HorizonAgents && HorizonAgents.AgentSuivi) {
         HorizonAgents.AgentSuivi.save(data);
       }
       const email =
-        (form.dataset.submitEmail || "elbeaudry@outlook.com").trim();
+        (form.dataset.submitEmail || "elbeaudry128@gmail.com").trim();
       if (window.HorizonAgents && HorizonAgents.AgentFormulaire) {
         HorizonAgents.AgentFormulaire.sendCorsSafe(form, data, email);
-        return; // navigation vers FormSubmit puis retour
+        return;
       }
-      // Repli si agents absents : succès local seulement
       form.hidden = true;
-      success.hidden = false;
+      if (success) success.hidden = false;
       const sn = qs("#success-name", success);
       const sp = qs("#success-phone", success);
       const st = qs("#success-time", success);
@@ -141,9 +134,11 @@ function initDossierForm() {
       if (sp) sp.textContent = data.phone;
       if (st) st.textContent = data.bestReachTime;
     } catch (err) {
-      serverError.hidden = false;
-      serverError.textContent =
-        "L’enregistrement a échoué. Vérifiez vos infos et réessayez.";
+      if (serverError) {
+        serverError.hidden = false;
+        serverError.textContent =
+          "L’enregistrement a échoué. Vérifiez vos infos et réessayez.";
+      }
     } finally {
       btn.disabled = false;
       btn.textContent = "Enregistrer mon dossier";
@@ -153,7 +148,7 @@ function initDossierForm() {
   qs("[data-reset-form]")?.addEventListener("click", () => {
     form.reset();
     form.hidden = false;
-    success.hidden = true;
+    if (success) success.hidden = true;
     showFieldErrors({});
   });
 }
@@ -169,11 +164,13 @@ function formatDate(iso) {
   }
 }
 
-const LABELS = {
-  placeType: { chalet: "Chalet locatif", commerce: "Commerce", bureau: "Bureau", autre: "Autre" },
-  urgency: { standard: "Standard", prioritaire: "Prioritaire (48 h)", urgent: "Urgent" },
-  sizeLabel: { petit: "Petit", moyen: "Moyen", grand: "Grand" },
-};
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&")
+    .replace(/</g, "<")
+    .replace(/>/g, ">")
+    .replace(/"/g, """);
+}
 
 function initAdminDossiers() {
   const gate = qs("#admin-gate");
@@ -186,7 +183,6 @@ function initAdminDossiers() {
     renderList();
   };
 
-  // Auto-unlock if already authenticated this session
   if (sessionStorage.getItem("hg_admin") === "1") unlock();
 
   qs("#admin-login")?.addEventListener("submit", (e) => {
@@ -195,9 +191,9 @@ function initAdminDossiers() {
     const err = qs("#pin-error");
     if (pin === ADMIN_PIN) {
       sessionStorage.setItem("hg_admin", "1");
-      err.hidden = true;
+      if (err) err.hidden = true;
       unlock();
-    } else {
+    } else if (err) {
       err.hidden = false;
       err.textContent = "Code incorrect.";
     }
@@ -224,54 +220,26 @@ function initAdminDossiers() {
     const items = loadDossiers();
     if (!items.length) {
       listEl.innerHTML =
-        '<div class="panel"><p class="muted">Aucun dossier pour l’instant. Les soumissions du formulaire public apparaîtront ici (sur cet appareil) et par courriel.</p><p><a class="btn" href="dossier.html">Ouvrir le formulaire</a></p></div>';
+        '<div class="panel"><p class="muted">Aucun dossier pour l’instant.</p><p><a class="btn" href="dossier.html">Ouvrir le formulaire</a></p></div>';
       return;
     }
     listEl.innerHTML = items
-      .map((c) => {
-        const place = LABELS.placeType[c.placeType] || c.placeType || "—";
-        const urg = LABELS.urgency[c.urgency] || c.urgency || "—";
-        const size = LABELS.sizeLabel[c.sizeLabel] || c.sizeLabel || "—";
-        const services = Array.isArray(c.serviceTypes)
-          ? c.serviceTypes.join(", ")
-          : c.serviceTypes || "—";
-        return `
+      .map((c) => `
         <article class="dossier-card">
-          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:0.5rem">
-            <div>
-              <span class="badge">Fiche #${c.id}</span>
-              <h3>${escapeHtml(c.businessName)}</h3>
-            </div>
-            <time class="subtle" datetime="${c.createdAt}">${formatDate(c.createdAt)}</time>
-          </div>
+          <span class="badge">Fiche #${c.id}</span>
+          <h3>${escapeHtml(c.businessName)}</h3>
+          <p class="subtle">${formatDate(c.createdAt)}</p>
           <dl class="meta-grid">
             <div class="meta-item"><dt>Lieu</dt><dd>${escapeHtml(c.location)}</dd></div>
             <div class="meta-item"><dt>Téléphone</dt><dd><a href="tel:${escapeHtml(String(c.phone).replace(/[^\d+]/g, ""))}">${escapeHtml(c.phone)}</a></dd></div>
-            <div class="meta-item"><dt>Courriel</dt><dd>${escapeHtml(c.email || "—")}</dd></div>
             <div class="meta-item"><dt>Meilleure heure</dt><dd>${escapeHtml(c.bestReachTime)}</dd></div>
             <div class="meta-item"><dt>Disponibilités</dt><dd>${escapeHtml(c.callAvailability)}</dd></div>
-            <div class="meta-item"><dt>Type de lieu</dt><dd>${escapeHtml(place)}</dd></div>
-            <div class="meta-item"><dt>Taille</dt><dd>${escapeHtml(size)}</dd></div>
-            <div class="meta-item"><dt>Services</dt><dd>${escapeHtml(services)}</dd></div>
-            <div class="meta-item"><dt>Date souhaitée</dt><dd>${escapeHtml(c.desiredDate || "—")}</dd></div>
-            <div class="meta-item"><dt>Urgence</dt><dd>${escapeHtml(urg)}</dd></div>
-            <div class="meta-item" style="grid-column:1/-1"><dt>Notes / accès</dt><dd>${escapeHtml(c.accessNotes || "—")}</dd></div>
           </dl>
-        </article>`;
-      })
+        </article>`)
       .join("");
   }
 }
 
-function escapeHtml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-/* Force video autoplay (muted) on mobile */
 function initVideo() {
   const v = qs("#ad-video");
   if (!v) return;
