@@ -68,6 +68,17 @@
       bridge.style.display = "none";
       bridge.setAttribute("aria-hidden", "true");
 
+      try {
+        sessionStorage.setItem(
+          "hg_last_dossier",
+          JSON.stringify({
+            businessName: data.businessName || "",
+            phone: data.phone || "",
+            bestReachTime: data.bestReachTime || "",
+          })
+        );
+      } catch (_) {}
+
       const fields = {
         ...data,
         serviceTypes: Array.isArray(data.serviceTypes)
@@ -100,6 +111,16 @@
       const success = document.querySelector("#form-success");
       if (form) form.hidden = true;
       if (success) success.hidden = false;
+      let last = {};
+      try {
+        last = JSON.parse(sessionStorage.getItem("hg_last_dossier") || "{}");
+      } catch (_) {}
+      const sn = document.querySelector("#success-name");
+      const sp = document.querySelector("#success-phone");
+      const st = document.querySelector("#success-time");
+      if (sn) sn.textContent = last.businessName || "";
+      if (sp) sp.textContent = last.phone || "";
+      if (st) st.textContent = last.bestReachTime || "";
       log(this.name, "retour après envoi réussi");
       try {
         history.replaceState({}, "", location.pathname);
